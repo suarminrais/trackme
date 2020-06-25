@@ -15,11 +15,10 @@ class CreateTracksTable extends Migration
     {
         Schema::create('track', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('user')->onUpdate('cascade')->onDelete('cascade');
             $table->string('lat');
             $table->string('long');
-            $table->string('lat');
-            $table->foreign('user_id')->references('id')->on('user')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
