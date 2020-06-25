@@ -52,4 +52,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return [];
     }
+
+    public function track()
+    {
+        return $this->hasMany('App\Track');
+    }
 }
