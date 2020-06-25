@@ -8,12 +8,6 @@ use App\User;
 
 class AuthController extends Controller
 {
-    /**
-     * Store a new user.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
     public function register(Request $request)
     {
         //validate incoming request 

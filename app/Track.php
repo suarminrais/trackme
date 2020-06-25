@@ -4,8 +4,13 @@ use Illuminate\Database\Eloquent\Model;
 class Track extends Model
 {
     protected $table = 'track';
+    
     protected $fillable = [
-        'user_id', 'lat', 'long'
+        'lat', 'long'
+    ];
+
+    protected $hidden = [
+        'user_id',
     ];
     
     public function user()
