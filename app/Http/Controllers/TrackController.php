@@ -15,13 +15,7 @@ class TrackController extends Controller
 
     public function index()
     {
-        return response()->json([
-            'diagnostic' => [
-                'code' => 200,
-                'message' => 'Ok'
-            ],
-            'data' => \Auth::user()->track
-            ],200);
+        return response()->json(\Auth::user()->track()->orderBy('id','desc')->get(),200);
     }
 
     public function store(Request $req)

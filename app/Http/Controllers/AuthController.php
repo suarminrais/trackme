@@ -14,7 +14,7 @@ class AuthController extends Controller
         $this->validate($request, [
             'name' => 'required|string',
             'email' => 'required|email|unique:user',
-            'password' => 'required|confirmed',
+            'password' => 'required',
         ]);
 
         try {
@@ -28,12 +28,9 @@ class AuthController extends Controller
             $user->save();
 
             //return successful response
-            return response()->json(
-                ['data' => $user, 'diagnostic' => [
-                    'code' => 200,
-                    'message' => 'Berhasil registrasi!'
-                ]],
-             200);
+            return response()->json([
+                'message' => 'Berhasil registrasi!'
+            ], 200);
 
         } catch (\Exception $e) {
             //return error message
@@ -52,7 +49,7 @@ class AuthController extends Controller
         $credentials = $request->only(['email', 'password']);
 
         if (! $token = Auth::attempt($credentials)) {
-            return response()->json(['message' => 'Unauthorized'], 401);
+            return response()->json(['message' => 'data salah atau tidak terdaftar!'], 401);
         }
 
         return $this->respondWithToken($token);
